@@ -4,4 +4,7 @@
     <dimen name="wayname_bottom_padding">8dp</dimen>
     <dimen name="wayname_padding">16dp</dimen>
     <dimen name="wayname_padding_bottom">2dp</dimen>
+
+    <dimen name="maneuver_icon_size">80dp</dimen>
+    <dimen name="maneuver_step_distance_text_size">40sp</dimen>
 </resources>
