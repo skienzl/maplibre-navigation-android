@@ -12,8 +12,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/instructionManeuverLayout"
-        android:layout_width="88dp"
-        android:layout_height="104dp"
+        android:layout_width="135dp"
+        android:layout_height="154dp"
         android:layout_marginBottom="4dp"
         android:background="@drawable/instruction_background"
         android:elevation="4dp"
@@ -27,8 +27,8 @@
 
         <com.mapbox.services.android.navigation.ui.v5.instruction.maneuver.ManeuverView
             android:id="@+id/maneuverView"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="@dimen/maneuver_icon_size"
+            android:layout_height="@dimen/maneuver_icon_size"
             android:layout_margin="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +48,7 @@
             android:includeFontPadding="false"
             android:maxLines="1"
             android:textColor="?attr/navigationViewBannerSecondaryText"
-            android:textSize="20sp"
+            android:textSize="@dimen/maneuver_step_distance_text_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
