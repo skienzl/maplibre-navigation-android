@@ -200,6 +200,7 @@ public class NavigationMapboxMap {
    */
   public void updateLocation(Location location) {
     locationComponent.forceLocationUpdate(location);
+
     updateMapWayNameWithLocation(location);
   }
 
@@ -273,11 +274,11 @@ public class NavigationMapboxMap {
    * @param navigation to add the progress listeners
    */
   public void addProgressChangeListener(@NonNull MapboxNavigation navigation) {
-    initializeWayName(mapboxMap, mapPaddingAdjustor);
+    //initializeWayName(mapboxMap, mapPaddingAdjustor);
     initializeFpsDelegate(mapView);
     mapRoute.addProgressChangeListener(navigation);
     mapCamera.addProgressChangeListener(navigation);
-    mapWayName.addProgressChangeListener(navigation);
+    //mapWayName.addProgressChangeListener(navigation);
     mapFpsDelegate.addProgressChangeListener(navigation);
   }
 
