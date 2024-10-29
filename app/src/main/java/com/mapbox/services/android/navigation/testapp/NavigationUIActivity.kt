@@ -188,7 +188,7 @@ class NavigationUIActivity :
             this.alternatives(true)
             // If you are using this with the GraphHopper Directions API, you need to uncomment user and profile here.
             //this.user("gh")
-            //this.profile("car")
+            this.profile("curvy")
             this.baseUrl(getString(R.string.base_url))
         }
 
@@ -210,6 +210,7 @@ class NavigationUIActivity :
             }
 
             override fun onFailure(call: Call<DirectionsResponse>, throwable: Throwable) {
+                Timber.e("Url: %s", (call.request() as Request).url.toString())
                 Timber.e(throwable, "onFailure: navigation.getRoute()")
             }
         })
