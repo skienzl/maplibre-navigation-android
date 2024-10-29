@@ -2,8 +2,32 @@
 
 Maplibre welcomes participation and contributions from everyone.
 
-### v2.1.0 - unreleased
+### unreleased
 
+- Update dependencies, build tools & configurations
+- Use last snapped bearing if no previous step is available
+- Fix crash on snap-to-route engine, caused by legs with only single step
+- Android manifest cleanup for `libnavigation-android`
+  - Explicitly add `android.permission.ACCESS_NETWORK_STATE`, as this is needed for `com.mapbox.services.android.core.connectivity.ConnectivityReceiver`
+  - Remove Mapbox telemetry provider references (the references to code have already been removed)
+- Additional build version checks `if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)` for deprecated context register receiver calls.
+- Added directions builder `waypointIndices` to NavigationRoute builder.
+- Added sample code on how to use the Valhalla routing server directly in `ValhallaNavigationActivity`. Please make sure to add this line to the `app/main/res/values/developer-config.xml`:
+  ```xml
+    <string name="valhalla_url" translatable="false">https://valhalla1.openstreetmap.de/route</string>
+  ```
+- Fix crash on ManeuverView, caused by `contains` not being able to handle null values [#122](https://github.com/maplibre/maplibre-navigation-android/issues/122)
+
+### v3.0.0 - November 5, 2023
+
+- BREAKING CHANGES:
+  - The navigation models DirectionsResponse and the classes used within this class have been moved the Maplibre-Java to the navigation-core. So the core does not need a dependency to the outdated Maplibre-Java dependency anymore.
+  - When you pass a DirectionsResponse or DirectionsRoute to the navigation-core, please be aware that you convert it to the local model first. If you are using Mapbox or the GraphHopper navigation endpoint, you can simply use fromJson for parsing.
+    - You could use something like this: `com.mapbox.services.android.navigation.v5.models.DirectionsResponse.fromJson(JSON_STRING_FROM_API_RESPONSE);`
+  - `RouteFetcher` has been split to `RouteFetcher` and `MapboxRouteFetcher`. The latter is in the ui module now.
+  - `NavigationRoute` has been moved to the ui module.
+  - `RouteProcessorBackgroundThread.Listener#onCheckFasterRoute` was removed as this relied on parts of the RouteFetcher that don't work anymore in the core. If you need this feature, you implement this in the UI code. 
+    - This resulted in some smaller API changes that don't require the RouteFetcher as parameter anymore.
 - Support multiple legs by snap to route engine [#77](https://github.com/maplibre/maplibre-navigation-android/pull/77)
 - Mark unused option `maximumDistanceOffRoute` as deprecated [#65](https://github.com/maplibre/maplibre-navigation-android/pull/65)
 - Fix move-away-from-maneuver logic of `OffRouteDetector` [#65](https://github.com/maplibre/maplibre-navigation-android/pull/65)
@@ -25,6 +49,9 @@ Maplibre welcomes participation and contributions from everyone.
   ```
 - Fix memory leak in Navigation Service
 - Only progress the user along the step / route if the user is close to the route (currently 1km), [#75](https://github.com/maplibre/maplibre-navigation-android/pull/75)
+- Compatibility fixes for API 34 [#90](https://github.com/maplibre/maplibre-navigation-android/pull/90)
+- When setting a new route or advancing to the next leg, we reset the `currentLegAnnotation` in `NavigationRouteProcessor`, fixes legs don't reset on rerouting.
+- Make sure step distance remaining is set correctly before first routeProgress is calculated, only calculate maneuverCompletion when routeProgress is set. This fixes annotation Index set to wrong values
 
 ### v2.0.0 - March 21, 2023
 

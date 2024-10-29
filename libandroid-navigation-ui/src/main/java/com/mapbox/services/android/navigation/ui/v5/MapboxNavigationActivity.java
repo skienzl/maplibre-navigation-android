@@ -7,7 +7,7 @@ import android.preference.PreferenceManager;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.mapbox.api.directions.v5.models.DirectionsRoute;
+import com.mapbox.services.android.navigation.v5.models.DirectionsRoute;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
 import com.mapbox.services.android.navigation.ui.v5.listeners.NavigationListener;
 import com.mapbox.services.android.navigation.v5.navigation.MapboxNavigationOptions;
@@ -25,7 +25,7 @@ public class MapboxNavigationActivity extends AppCompatActivity implements OnNav
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
-    setTheme(R.style.Theme_AppCompat_NoActionBar);
+    setTheme(androidx.appcompat.R.style.Theme_AppCompat_NoActionBar);
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_navigation);
     navigationView = findViewById(R.id.navigationView);
